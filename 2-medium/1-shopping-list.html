@@ -25,7 +25,33 @@
 
   <script>
     // JavaScript goes here
+    let myList = document.getElementById('shoppingList');
+    let myForm = document.getElementById('newItemForm');
+
+    myForm.addEventListener('submit', addToList);
+
+
+    function addToList(event) {
+      event.preventDefault(); //prevent the form from submitting
+      let newLi = document.createElement('li'); //create a new list item.
+      let newItem = document.getElementById('item'); //grab the new item being entered.
+      newLi.textContent = newItem.value; //the text content of the new list item is the value of my newItem input.
+      myList.appendChild(newLi); //add the new list item to myList
+      newItem.value = ""; //empty string to store the newItem value.
+
+
+      let removeButton = document.createElement('button'); //create a delete button
+      removeButton.textContent = 'Delete';
+      newLi.appendChild(removeButton); //add the button to the new li we've created
+      removeButton.addEventListener('click', function (event) { //listen for a click of the button
+        let itemToRemove = this.parentElement; //single out the li (parent element of the button)
+        itemToRemove.remove(this); //remove the li
+      })
+    }
+
+
     
+
   </script>
 </body>
 </html>
